@@ -21,29 +21,31 @@ export class App extends Component {
       return alert(`${data.name} is alredy in contacts`);
 
     const todo = { id: nanoid(), ...data };
-    console.log(data);
+
     this.setState(({ contacts }) => ({ contacts: [todo, ...contacts] }));
-    console.log(this.state);
   };
 
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  getVisibleTodos = () => {
+  addFilterContacts = () => {
     const { filter, contacts } = this.state;
-    console.log('line 30 ~ App ~ contacts', contacts);
     const normalizedFilter = filter.toLowerCase();
 
-    const onFilter = contacts.filter(contact =>
+    return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
-    console.log('line 35 ~ App ~ onFilter', onFilter);
-    return onFilter;
+  };
+
+  deleteContacts = contactsId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactsId),
+    }));
   };
 
   render() {
-    const visibleTodos = this.getVisibleTodos();
+    const visibleTodos = this.addFilterContacts();
     return (
       <Wrapper className="Reviews">
         <Section title={'Phonebook'}>
@@ -53,7 +55,7 @@ export class App extends Component {
           <Filter value={this.state.filter} onChange={this.changeFilter} />
           <ContactList
             contacts={visibleTodos}
-            onContactsCompleted={this.state.contacts}
+            onContactsDelete={this.deleteContacts}
           />
         </Section>
       </Wrapper>

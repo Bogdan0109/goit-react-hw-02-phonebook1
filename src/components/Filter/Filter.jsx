@@ -1,8 +1,14 @@
 import React from 'react';
+import './Filter.scss';
 
 export const Filter = ({ value, onChange }) => (
-  <label>
+  <label className="Filter__label">
     Фильтр по имени
-    <input type="text" value={value} onChange={onChange} />
+    <input
+      className="Filter__input"
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
   </label>
 );

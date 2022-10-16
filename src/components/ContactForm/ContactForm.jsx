@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import './ContactForm.scss';
 
 export class ContactForm extends Component {
   loginInputId = nanoid();
@@ -11,15 +12,10 @@ export class ContactForm extends Component {
 
   handleChange = e => {
     e.preventDefault();
-    // if (e.target.nodeName !== 'BUTTON') {
-    //   return;
-    // }
 
     const { name, value } = e.target;
 
     this.setState({ [name]: value });
-    // this.countTotalFeedback();
-    // this.countPositiveFeedbackPercentage();
   };
 
   handleSubmit = e => {
@@ -35,10 +31,11 @@ export class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor={this.loginInputId}>
+      <form className="Form" onSubmit={this.handleSubmit}>
+        <label htmlFor={this.loginInputId} className="Form__label">
           Name
           <input
+            className="Form__input"
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -48,9 +45,10 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <label htmlFor={this.loginInputId}>
+        <label htmlFor={this.loginInputId} className="Form__label">
           Number
           <input
+            className="Form__input"
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -60,7 +58,9 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button className="Form__btn" type="submit">
+          Add contact
+        </button>
       </form>
     );
   }

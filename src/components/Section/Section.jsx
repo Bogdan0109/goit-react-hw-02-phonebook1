@@ -1,7 +1,9 @@
+import './Section.scss';
+
 export const Section = ({ title, children }) => {
   return (
     <>
-      <h2>{title}</h2>
+      <h2 className="Title">{title}</h2>
       {children}
     </>
   );

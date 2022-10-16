@@ -1,10 +1,19 @@
-export const ContactList = ({ contacts, onContactsCompleted }) => {
+import './ContactList.scss';
+
+export const ContactList = ({ contacts, onContactsDelete }) => {
   return (
-    <ul>
+    <ul className="ContactList">
       {contacts.map(({ id, name, number }) => (
-        <li key={id}>
-          <p className="TodoList__text">{name}</p>
-          <span>{number}</span>
+        <li key={id} className="ContactList__item">
+          <p className="ContactList__text">{name}:</p>
+          <span className="ContactList__span">{number}</span>
+          <button
+            type="button"
+            className="ContactList__btn"
+            onClick={() => onContactsDelete(id)}
+          >
+            Удалить
+          </button>
         </li>
       ))}
     </ul>
