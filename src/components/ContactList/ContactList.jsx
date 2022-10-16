@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './ContactList.scss';
 
 export const ContactList = ({ contacts, onContactsDelete }) => {
@@ -18,4 +19,9 @@ export const ContactList = ({ contacts, onContactsDelete }) => {
       ))}
     </ul>
   );
+};
+
+ContactList.protoType = {
+  contacts: PropTypes.object.isRequired,
+  onContactsDelete: PropTypes.func.isRequired,
 };
