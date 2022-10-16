@@ -1,4 +1,4 @@
-export const Contacts = ({ contacts }) => {
+export const ContactList = ({ contacts, onContactsCompleted }) => {
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (
